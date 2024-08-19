@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const copyStatus = document.getElementById('copyStatus');
     const previousKeysContainer = document.getElementById('previousKeysContainer');
     const previousKeysList = document.getElementById('previousKeysList');
-    const telegramChannelBtn = document.getElementById('telegramChannelBtn');
 
     const initializeLocalStorage = () => {
         const now = new Date().toISOString().split('T')[0];
@@ -309,13 +308,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    document.getElementById('creatorChannelBtn').addEventListener('click', () => {
-        window.open('', '_blank');
-    });
-
-    telegramChannelBtn.addEventListener('click', () => {
-        window.open('', '_blank');
-    });
 
     document.getElementById('ShowKeysBtn').addEventListener('click', () => {
         const generatedCodesContainer = document.getElementById('generatedCodesContainer');
