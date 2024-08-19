@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const copyStatus = document.getElementById('copyStatus');
     const previousKeysContainer = document.getElementById('previousKeysContainer');
     const previousKeysList = document.getElementById('previousKeysList');
+    const telegramChannelBtn = document.getElementById('telegramChannelBtn');
 
     const initializeLocalStorage = () => {
         const now = new Date().toISOString().split('T')[0];
@@ -168,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const storedData = JSON.parse(localStorage.getItem(storageKey));
 
         if (storedData.count + keyCount > MAX_KEYS_PER_GAME_PER_DAY) {
-            alert(`امروز شما فقط میتوانید ${MAX_KEYS_PER_GAME_PER_DAY - storedData.count} کلید دریافت کلید برای بازی ${game.name} .`);
+            alert(`You can generate only ${MAX_KEYS_PER_GAME_PER_DAY - storedData.count} more keys for ${game.name} today.`);
             previousKeysList.innerHTML = storedData.keys.map(key =>
                 `<div class="key-item">
                     <input type="text" value="${key}" readonly>
@@ -182,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         progressBar.style.width = '0%';
         progressText.innerText = '0%';
-        progressLog.innerText = '...شروع \n تولید کلید ممکن است تا 10 دقیقه طول بکشد';
+        progressLog.innerText = '';
         progressContainer.classList.remove('hidden');
         keyContainer.classList.add('hidden');
         generatedKeysTitle.classList.add('hidden');
@@ -235,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
         countdownContainer.style.display = 'none';
 
         const hasCode = await emulateProgress(clientToken, game.promoId);
-        updateProgress(((100 / game.attemptsNumber) / keyCount), 'درحال شبیه سازی...');
+        updateProgress(((100 / game.attemptsNumber) / keyCount), '');
         if (hasCode) {
             break;
         }
@@ -243,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
         const key = await generateKey(clientToken, game.promoId);
-        updateProgress(30 / keyCount, 'درحال دریافت کلید...');
+        updateProgress(30 / keyCount, '');
         return key;
     } catch (error) {
         alert(`Failed to generate key: ${error.message}`);
@@ -308,6 +309,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    document.getElementById('creatorChannelBtn').addEventListener('click', () => {
+        window.open('', '_blank');
+    });
+
+    telegramChannelBtn.addEventListener('click', () => {
+        window.open('', '_blank');
+    });
 
     document.getElementById('ShowKeysBtn').addEventListener('click', () => {
         const generatedCodesContainer = document.getElementById('generatedCodesContainer');
