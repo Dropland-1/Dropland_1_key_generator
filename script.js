@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const storedData = JSON.parse(localStorage.getItem(storageKey));
 
         if (storedData.count + keyCount > MAX_KEYS_PER_GAME_PER_DAY) {
-            alert(`You can generate only ${MAX_KEYS_PER_GAME_PER_DAY - storedData.count} more keys for ${game.name} today.`);
+            alert(`شما امروز فقط ${MAX_KEYS_PER_GAME_PER_DAY - storedData.count} کلید برای بازی ${game.name} .میتوانید تولید کنید`);
             previousKeysList.innerHTML = storedData.keys.map(key =>
                 `<div class="key-item">
                     <input type="text" value="${key}" readonly>
