@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('ShowKeysBtn').addEventListener('click', () => {
         const generatedCodesContainer = document.getElementById('generatedCodesContainer');
         const generatedCodesList = document.getElementById('generatedCodesList');
-        generatedCodesList.innerHTML = ''; // Clear the list
+        generatedCodesList.innerHTML = '';
 
         let codesGeneratedToday = [];
 
