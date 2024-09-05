@@ -197,8 +197,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const storageKey = `keys_generated_${game.name}`;
         const storedData = JSON.parse(localStorage.getItem(storageKey));
 
-        if (storedData.count + keyCount > MAX_KEYS_PER_GAME_PER_DAY) {
-            alert(`شما امروز فقط ${MAX_KEYS_PER_GAME_PER_DAY - storedData.count} کلید برای بازی ${game.name} .میتوانید تولید کنید`);
+	let maxKeysForGame = MAX_KEYS_PER_GAME_PER_DAY;
+
+	if (game.name === 'Fluff Crusade') {
+            maxKeysForGame = 8;
+    	}
+
+        if (storedData.count + keyCount > maxKeysForGame) {
+            alert(`شما امروز فقط ${maxKeysForGame - storedData.count} کلید برای بازی ${game.name} .میتوانید تولید کنید`);
             previousKeysList.innerHTML = storedData.keys.map(key =>
                 `<div class="key-item">
                     <input type="text" value="${key}" readonly>
